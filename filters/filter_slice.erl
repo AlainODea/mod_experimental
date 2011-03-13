@@ -16,7 +16,6 @@
 %% See the License for the specific language governing permissions and
 %% limitations under the License.
 
-%
 % 
 % Given a list = [1,2,3,4,5,6,7,8,9,0]
 %
@@ -28,10 +27,7 @@
 % {{ list|slice:[7] }} -> [1,2,3,4,5,6,7]
 % {{ list|slice:[-3] }} -> [1,2,3,4,5,6,7]
 %
-% {{ list|slice:[7,3] }} -> [7,8,9,0,1,2,3]
-% {{ list|slice:[7,-7] }} -> [7,8,9,0,1,2,3]
-% {{ list|slice:[-3,-7] }} -> [7,8,9,0,1,2,3]
-% {{ list|slice:[-3,3] }} -> [7,8,9,0,1,2,3]
+% {{ list|slice:[M,N] }}, where N < M will return []
 %
 
 -module(filter_slice).
@@ -59,7 +55,7 @@ slice1(List, M, N) when is_integer(M) andalso is_integer(N) ->
     slice2(List, M1, N1).
 
 slice2(List, M, N) when N < M ->
-    lists:sublist(List, M, length(List)) ++ lists:sublist(List, 1, N);
+    [];
 
 slice2(List, M, N) ->
     lists:sublist(List, M, N - M + 1).
