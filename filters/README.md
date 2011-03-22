@@ -4,22 +4,22 @@ Filter documentation
 For now, put a short description of what your filter can do here
 
 
-slice
+bbcode
 ----------------------
 
-Get a sublist from a list:
+% 
+% {{ text|bbcode }}
+%
+% This is a very simple filter. It only implements tags described here:
+% http://en.wikipedia.org/wiki/BBCode
+%
+% There's only one small addition:
+%
+% [table][thead][th]header[/th][/thead][tr][td]cell[/td][/tr][/table]
+%
+% will generate a table with <th>'s
+%
 
-	% 
-	% Given a list = [1,2,3,4,5,6,7,8,9,0]
-	%
-	% {{ list|slice:[3,7] }} -> [3,4,5,6,7]
-	% {{ list|slice:[3,-3] }} -> [3,4,5,6,7]
-	% {{ list|slice:[-7,-3] }} -> [3,4,5,6,7]
-	% {{ list|slice:[-7,7] }} -> [3,4,5,6,7]
-	%
-	% {{ list|slice:[7] }} -> [1,2,3,4,5,6,7]
-	% {{ list|slice:[-3] }} -> [1,2,3,4,5,6,7]
-	%
-	% {{ list|slice:[M,N] }}, where N < M will return []
-	%
+See filter source for more info and BBCode PEG grammar
 
+NOTE: The filter doesn't (yet?) sanitize output!
